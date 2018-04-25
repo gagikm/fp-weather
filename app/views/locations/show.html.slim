@@ -37,6 +37,10 @@
         hr
 
         dt
+          | Weather
+        dd
+          = image_tag("https://www.metaweather.com/static/img/weather/png/64/#{report['weather_state_abbr']}.png")
+        dt
           | Applicable Date
         dd
           = report['applicable_date']
