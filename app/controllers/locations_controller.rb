@@ -7,10 +7,10 @@ class LocationsController < ApplicationController
     end
 
     search_query = search_query.downcase
-    existing_entry = CacheEntry.find_by(query: search_query)
+    cached_entry = CacheEntry.find_by(query: search_query)
 
-    if existing_entry
-      @locations = JSON.parse(existing_entry.response)
+    if cached_entry
+      @locations = JSON.parse(cached_entry.response)
     else
       @locations = MetaWeather.new(params).search if search_query
       entry = CacheEntry.new
