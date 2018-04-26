@@ -1,0 +1,32 @@
+.container(style="margin-top: 1rem")
+  = form_tag(admin_index_path, method: :post, class: 'form-inline') do
+    .form-row.align-items-center
+      .col-auto
+        = text_field_tag :query, params[:query], class: 'form-control', placeholder: 'Add query to cache...'
+      .col-auto
+        = submit_tag 'Add', class: 'btn btn-primary'
+      .col-auto
+        = link_to 'Go to Locations', locations_path, class: 'btn btn-dark'
+
+.container(style="margin-top: 1rem")
+  - if @cached_entries.blank?
+    | Cache is empty.
+  - else
+    table.table.table-striped
+      thead
+        tr
+          th
+          th 
+            | Cached Query
+          th
+            | Response
+
+      tbody
+        - @cached_entries.each do |entry|
+          tr
+            td
+              = link_to "Delete", 	admin_path(id: entry.id), method: :delete, class: 'btn btn-secondary'
+            td
+              = link_to entry.query, locations_path(query: entry.query)
+            td
+              = entry.response
