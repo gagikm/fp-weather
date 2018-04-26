@@ -4,12 +4,13 @@
       .col-auto
         = text_field_tag :query, params[:query], class: 'form-control', placeholder: 'Location...'
       .col-auto
-        = submit_tag 'Search...', class: 'btn btn-primary'
+        = submit_tag 'Search', class: 'btn btn-primary'
+      .col-auto
+        = link_to 'Admin', admin_index_path, class: 'btn btn-dark'
 
 .container(style="margin-top: 1rem")
   - if @locations.blank?
-    h3
-      | Nothing to see here... :( Try search again.
+    | Enter a location to get weather information.
   - else
     table.table.table-striped
       thead
